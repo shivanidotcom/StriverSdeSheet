@@ -1,0 +1,48 @@
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data=x;
+        next=null;
+    }
+}
+public class Main
+{
+    
+    public static Node deleteBegin(Node head){
+      
+        if (head==null){
+            return null;
+        }else{
+            head=head.next;
+            return head;
+        }
+    }
+    public static void display(Node head){
+        Node curr=head;
+		while(curr!=null){
+		    System.out.print(curr.data+" ");
+		    curr=curr.next;
+		    
+		}
+		
+    }
+	public static void main(String[] args) {
+	    	Node head=new Node(10);
+		Node temp1=new Node(20);
+		Node temp2=new Node(30);
+		head.next=temp1;
+		temp1.next=temp2;
+		temp2.next=null;
+		System.out.println("Displaying through iterative method");
+		display(head);
+		
+	  
+	   System.out.println("\nDeleting Beginning");
+	   head=deleteBegin(head);
+	   display(head);
+	  
+		
+	}
+}
+
