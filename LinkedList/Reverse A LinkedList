@@ -1,0 +1,57 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data=x;
+        next=null;
+    }
+}
+public class Main
+{
+    public static Node reverseNaive(Node head){
+        ArrayList<Integer> al=new ArrayList<Integer>();
+        for(Node curr=head;curr!=null;curr=curr.next){
+            al.add(curr.data);
+        }
+        for(Node curr=head;curr!=null;curr=curr.next){
+            curr.data=al.remove(al.size()-1);
+        }
+        return head;
+    }
+    public static Node reverse(Node head){
+        Node curr=head;
+        Node prev=null;
+        while(curr!=null){
+            Node next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+    public static void display(Node head){
+        Node curr=head;
+        while(curr!=null){
+            System.out.print(curr.data+" ");
+            curr=curr.next;
+        }
+    }
+	public static void main(String[] args) {
+		Node head=new Node(10);
+		Node temp1=new Node(20);
+		Node temp2=new Node(30);
+	    head.next=temp1;
+	    temp1.next=temp2;
+		System.out.println("Displaying the doubly LL in iterative method");
+		display(head);
+		System.out.println("\nNaive Approach");
+		head=reverseNaive(head);
+		display(head);
+		System.out.println("\nReversing the LL");
+		head=reverse(head);
+		display(head);
+	
+		
+	}
+}
