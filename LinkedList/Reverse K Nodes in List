@@ -1,0 +1,60 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+   
+    Node(int x){
+        data=x;
+        next=null;
+       
+    }
+}
+public class Main
+{
+    public static Node revK(Node head,int pos){
+        Node curr=head,prev=null,next=null;
+        int count=0;
+        while(curr!=null && count<pos){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+            count++;
+        }
+        if(next!=null){
+            Node rest_head=revK(next,pos);
+            head.next=rest_head;
+        }
+        return prev;
+    }
+    
+    public static void display(Node head){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+       
+    }
+	public static void main(String[] args) {
+	   Node head=new Node(10);
+	   Node temp1=new Node(20);
+	   Node temp2=new Node(70);
+	   Node temp3=new Node(30);
+	   Node temp4=new Node(40);
+	   Node temp5=new Node(50);
+	   Node temp6=new Node(60);
+	   head.next=temp1;
+	   temp1.next=temp2;
+	   temp2.next=temp3;
+	   temp3.next=temp4;
+	   temp4.next=temp5;
+	   temp5.next=temp6;
+       display(head);
+	   System.out.println();
+	   head=revK(head,3);
+	   display(head);
+	 
+	}
+}
+
