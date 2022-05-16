@@ -1,0 +1,50 @@
+
+class Node{
+    int data;
+    Node next;
+   
+    Node(int x){
+        data=x;
+        next=null;
+       
+    }
+}
+public class Main
+{
+    public static void nNodeEnd(Node head,int pos){
+        int count=0;
+        for(Node curr=head;curr!=null;curr=curr.next){
+            count++;
+        }
+        //System.out.println(count);
+        Node curr=head;
+        if(count<pos){
+            return ;
+        }
+        for(int i=1;i<count-pos+1;i++){
+            curr=curr.next;
+        }
+        System.out.println(curr.data);
+        
+    }
+    public static void display(Node head){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+       
+    }
+	public static void main(String[] args) {
+	   Node head=new Node(10);
+	   Node temp1=new Node(20);
+	   Node temp2=new Node(30);
+	   head.next=temp1;
+	   temp1.next=temp2;
+       display(head);
+	   System.out.println();
+	   nNodeEnd(head,2);
+	 
+	}
+}
+
