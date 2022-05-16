@@ -1,0 +1,49 @@
+class Node{
+    int data;
+    Node next;
+   
+    Node(int x){
+        data=x;
+        next=null;
+       
+    }
+}
+public class Main
+{
+    public static Node sortedInsert(Node head,int val){
+        Node temp=new Node(val);
+        if(head==null) return temp;
+        while(val<head.data) {
+            temp.next=head;
+            return temp;
+        }
+        Node curr=head;
+        while(curr.next!=null && curr.next.data<val){
+           curr=curr.next;
+        }
+         temp.next=curr.next;
+            curr.next=temp;
+            return head;
+    }
+    public static void display(Node head){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+       
+    }
+	public static void main(String[] args) {
+	   Node head=new Node(10);
+	   Node temp1=new Node(20);
+	   Node temp2=new Node(30);
+	   head.next=temp1;
+	   temp1.next=temp2;
+       display(head);
+	   System.out.println();
+	   head=sortedInsert(head,25);
+	   display(head);
+	  
+	}
+}
+
