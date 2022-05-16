@@ -1,0 +1,56 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+   
+    Node(int x){
+        data=x;
+        next=null;
+       
+    }
+}
+public class Main
+{
+    public static void duplicates_sorted(Node head){
+        LinkedHashSet<Integer> hs=new LinkedHashSet<>();
+        for(Node curr=head;curr!=null;curr=curr.next){
+            hs.add(curr.data);
+        }
+        System.out.println(hs);
+    }
+    public static Node duplicates(Node head){
+        Node curr=head;
+        while(curr!=null && curr.next!=null){
+            if(curr.data==curr.next.data){
+                curr.next=curr.next.next;
+            }else{
+                curr=curr.next;
+            }
+        }
+        return head;
+    }
+    public static void display(Node head){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+       
+    }
+	public static void main(String[] args) {
+	   Node head=new Node(10);
+	   Node temp1=new Node(20);
+	   Node temp2=new Node(20);
+	   Node temp3=new Node(30);
+	   head.next=temp1;
+	   temp1.next=temp2;
+	   temp2.next=temp3;
+       display(head);
+	   System.out.println();
+	   duplicates_sorted(head);
+	   head=duplicates(head);
+	   display(head);
+	 
+	}
+}
+
