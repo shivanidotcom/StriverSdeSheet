@@ -1,0 +1,21 @@
+Input: head = [1,0,1]
+Output: 5
+Explanation: (101) in base 2 = (5) in base 10
+
+
+==============================================================
+
+class Solution {
+    public int getDecimalValue(ListNode head) {
+        String str="";
+        ArrayList<Integer> al=new ArrayList<>();
+        for(ListNode curr=head;curr!=null;curr=curr.next){
+            al.add(curr.val);
+        }
+        for(Integer i:al){
+            str+=Integer.toString(i);
+        }
+        int res=Integer.parseInt(str,2);
+        return res;
+    }
+}
