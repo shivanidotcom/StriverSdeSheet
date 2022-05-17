@@ -1,0 +1,50 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data=x;
+        next=null;
+    }
+}
+public class Main
+{
+    public static Node removeLoop(Node head){
+         Node fast=head,slow=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(fast==slow) break ;
+        }
+      if(fast!=slow) return null;
+        slow=head;
+        while(slow.next!=fast.next){
+            slow=slow.next;
+            fast=fast.next;
+        }
+        fast.next=null;
+        return head;
+    }
+    public static void display(Node head){
+        Node curr=head;
+        while(curr!=null){
+            System.out.print(curr.data+" ");
+            curr=curr.next;
+        }
+    }
+	public static void main(String[] args) {
+    	Node head=new Node(10);
+    	Node temp=new Node(12);
+    	Node temp1=new Node(15);
+    	Node temp2=new Node(20);
+    	Node temp3=new Node(25);
+    	head.next=temp;
+    	temp.next=temp1;
+    	temp1.next=temp2;
+    	temp2.next=temp3;
+    	temp3.next=temp;
+    	
+    	head=removeLoop(head);
+    	display(head);
+	}
+}
