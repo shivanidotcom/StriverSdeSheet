@@ -1,0 +1,42 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data=x;
+        next=null;
+    }
+}
+public class Main
+{
+    public static boolean isLoop(Node head){
+        HashSet<Node> hs=new HashSet<>();
+        while(head!=null){
+            if(hs.contains(head)){
+                return true;
+            }
+            hs.add(head);
+            head=head.next;
+        }
+        return false;
+    }
+    
+	public static void main(String[] args) {
+    	Node head=new Node(10);
+    	Node temp=new Node(12);
+    	Node temp1=new Node(15);
+    	Node temp2=new Node(20);
+    	Node temp3=new Node(25);
+    	head.next=temp;
+    	temp.next=temp1;
+    	temp1.next=temp2;
+    	temp2.next=temp3;
+    	temp3.next=temp;
+    	//display(head);
+    	if(isLoop(head)){
+    	    System.out.println("loop detected");
+    	}else{
+    	    System.out.println("no loop detected");
+    	}
+	}
+}
