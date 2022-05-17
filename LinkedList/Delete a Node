@@ -1,0 +1,38 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data=x;
+        next=null;
+    }
+}
+public class Main
+{
+    public static void delNode(Node temp1){
+        temp1.data=temp1.next.data;
+        temp1.next=temp1.next.next;
+        
+    }
+    public static void display(Node head){
+        Node curr=head;
+        while(curr!=null){
+            System.out.print(curr.data+" ");
+            curr=curr.next;
+        }
+    }
+	public static void main(String[] args) {
+    	Node head=new Node(10);
+    	Node temp=new Node(12);
+    	Node temp1=new Node(15);
+    	Node temp2=new Node(20);
+    	Node temp3=new Node(25);
+    	head.next=temp;
+    	temp.next=temp1;
+    	temp1.next=temp2;
+    	temp2.next=temp3;
+    	temp3.next=null;
+        delNode(temp1);
+    	display(head);
+	}
+}
