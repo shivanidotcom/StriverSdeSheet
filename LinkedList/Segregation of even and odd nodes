@@ -1,0 +1,67 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data=x;
+        next=null;
+    }
+}
+public class Main
+{
+    public static Node segregate(Node head){
+        Node es=null,ee=null,os=null,oe=null;
+        for(Node curr=head;curr!=null;curr=curr.next){
+            int x=curr.data;
+            if(x%2==0){
+                //even cases 
+                if(es==null){
+                    es=curr;
+                    ee=es;
+                }else{
+                    ee.next=curr;
+                    ee=ee.next;
+                }
+            }else{
+                //odd cases
+                if(os==null){
+                    os=curr;
+                    oe=os;
+                }else{
+                    oe.next=curr;
+                    oe=oe.next;
+                }
+            }
+        }
+           //joining the even and odd nodes 
+            if(os==null || es==null){
+                return head;
+            }
+            ee.next=os;
+            oe.next=null;
+        
+            return es;
+    }
+    public static void display(Node head){
+        Node curr=head;
+        while(curr!=null){
+            System.out.print(curr.data+" ");
+            curr=curr.next;
+        }
+    }
+	public static void main(String[] args) {
+    	Node head=new Node(10);
+    	Node temp=new Node(12);
+    	Node temp1=new Node(15);
+    	Node temp2=new Node(20);
+    	Node temp3=new Node(25);
+    	head.next=temp;
+    	temp.next=temp1;
+    	temp1.next=temp2;
+    	temp2.next=temp3;
+    	temp3.next=null;
+        head=segregate(head);
+    	display(head);
+	}
+}
+
