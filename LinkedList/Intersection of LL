@@ -1,0 +1,104 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data=x;
+        next=null;
+    }
+}
+public class Main
+{
+    // Method 1 --- using HashSet
+    public static int intersection(Node h1,Node h2){
+        HashSet<Integer> hs=new HashSet<>();
+        for(Node curr=h1;curr!=null;curr=curr.next){
+            hs.add(curr.data);
+        }
+        for(Node curr=h2;curr!=null;curr=curr.next){
+            int x=curr.data;
+            if(hs.contains(x)){
+                return curr.data;
+            }
+            //curr=curr.next;
+        }
+        return -1;
+    }
+    // Method 2 using --- counting the nodes of h1 and h2
+    public static int intersection_count(Node h1,Node h2){
+        int count1=0,count2=0;
+        for(Node curr=h1;curr!=null;curr=curr.next){
+            count1++;
+        }
+        for(Node curr=h2;curr!=null;curr=curr.next){
+            count2++;
+        }
+        int val=Math.abs(count2-count1);
+        for(int i=0;i<val;i++){
+            h1=h1.next;
+        }
+        while(h1!=null && h2!=null){
+            if(h1==h2){
+                return h1.data;
+            }
+            h1=h1.next;
+            h2=h2.next;
+        }
+        return -1;
+        
+    }
+    // Method 3 using two pointer reference
+    public static Node intersection_two(Node h1,Node h2){
+        Node l1=h1,l2=h2;
+        if(h1==null || h2==null) return null;
+        while(l1!=l2){
+            l1=l1.next;
+            l2=l2.next;
+            if(l1==l2){
+                return l1;
+            }
+            if(l1==null){
+                l1=h2;
+            }
+            if(l2==null){
+                l2=h1;
+            }
+            
+        }
+        return l1;
+    }
+    public static void display(Node head){
+        Node curr=head;
+        while(curr!=null){
+            System.out.print(curr.data+" ");
+            curr=curr.next;
+        }
+    }
+	public static void main(String[] args) {
+    	Node h1=new Node(5);
+    	Node temp=new Node(8);
+    	Node temp1=new Node(7);
+    	Node temp2=new Node(10);
+    	Node temp3=new Node(12);
+    	h1.next=temp;
+    	temp.next=temp1;
+    	temp1.next=temp2;
+    	temp2.next=temp3;
+    	temp3.next=null;
+    	Node h2=new Node(9);
+    	h2.next=temp2;
+    	display(h1);
+    	System.out.println();
+    	display(h2);
+        int res=intersection(h1,h2);
+        System.out.println("\nMethod 1 using HashSet");
+    	System.out.println(res);
+    	int res1=intersection_count(h1,h2);
+        System.out.println("Method 2 using counting the nodes");
+    	System.out.println(res1);
+    	h1=intersection_two(h1,h2);
+        System.out.println("Method 3 using two pointer");
+    	display(h1);
+	}
+}
+
