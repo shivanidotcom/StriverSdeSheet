@@ -11,16 +11,16 @@ public class Main
 {
     // Method 1 --- using HashSet
     public static int intersection(Node h1,Node h2){
-        HashSet<Integer> hs=new HashSet<>();
-        for(Node curr=h1;curr!=null;curr=curr.next){
-            hs.add(curr.data);
+        LinkedHashSet<ListNode> hs=new LinkedHashSet<>();
+        for(ListNode curr=headA;curr!=null;curr=curr.next){
+            hs.add(curr);
         }
-        for(Node curr=h2;curr!=null;curr=curr.next){
-            int x=curr.data;
-            if(hs.contains(x)){
+       // System.out.println(hs);
+        for(ListNode curr=headB;curr!=null;curr=curr.next){
+            
+            if(hs.contains(curr)){
                 return curr.data;
             }
-            //curr=curr.next;
         }
         return -1;
     }
