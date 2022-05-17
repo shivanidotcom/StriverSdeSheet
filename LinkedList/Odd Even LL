@@ -13,7 +13,7 @@ class Solution {
         }
         ListNode curr=head;
         for(int i=0;i<count;i++){
-            if(i%2==0){
+            if(i%2==0){ //even nodes
                 if(es==null){
                      es=curr;
                     ee=es;
@@ -23,7 +23,7 @@ class Solution {
                     ee=ee.next;
                     curr=curr.next;
                 }
-            }else{
+            }else{ //odd nodes
                 if(os==null){
                     os=curr;
                     oe=os;
