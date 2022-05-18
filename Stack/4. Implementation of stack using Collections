@@ -1,0 +1,14 @@
+import java.util.*;
+public class Main
+{
+    
+	public static void main(String[] args) {
+		ArrayDeque<Integer> ad=new ArrayDeque<>();
+		ad.push(10);
+		ad.push(20);
+		ad.push(30);
+		System.out.println(ad.peek());
+		System.out.println(ad.pop());
+		
+	}
+}
