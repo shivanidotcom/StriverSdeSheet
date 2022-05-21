@@ -1,0 +1,56 @@
+Input : arr[] = {10, 4, 2, 20, 40, 12, 30}
+Output :         -1, 10, 4, -1, -1, 40, 40
+
+Input : arr[] = {10, 20, 30, 40}
+Output :        -1, -1, -1, -1
+
+Input : arr[] = {40, 30, 20, 10}
+Output :        -1, 40, 30, 20
+
+======================================================================
+
+
+import java.util.*;
+public class Main
+{
+    public static void previousGreater(int[] arr,int n){
+        /* Navie approach */
+        
+        for(int i=0;i<n;i++){
+            int j;
+            for( j=i-1;j>=0;j--){
+                if(arr[j]>arr[i]){
+                    System.out.print(arr[j]+" ");
+                    break;
+                }
+                
+            }
+            if(j==-1){
+                System.out.print(-1+" ");
+            }
+        }
+       
+       
+    }
+     /* Efficient approach using stacks */
+    public static void previousGreater_stacks(int[] arr,int n){
+            Stack<Integer> s=new Stack<>();
+            s.push(arr[0]);
+            System.out.print(-1+ " ");
+            for(int i=1;i<n;i++){
+                while(s.isEmpty()==false && s.peek()<=arr[i]){
+                    s.pop();
+                }
+                int g=s.isEmpty()? -1: s.peek();
+                s.push(arr[i]);
+                System.out.print(g+" ");
+            }
+    }
+	public static void main(String[] args) {
+		int[] arr={15,10,18,12,4,6,2,8};
+		previousGreater(arr,arr.length);
+		System.out.println("");
+		previousGreater_stacks(arr,arr.length);
+		
+	}
+}
