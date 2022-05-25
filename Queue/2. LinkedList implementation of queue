@@ -1,0 +1,59 @@
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data=x;
+        next=null;
+    }
+}
+class Queue{
+   
+    Node front,rear;
+    Queue(){
+       front=rear=null;
+    }
+    void enque(int x){
+        Node temp=new Node(x);
+       if(front==null){
+           front=rear=temp;
+           return;
+       }
+       rear.next=temp;
+       rear=temp;
+       return ;
+       
+    }
+    void deque(){
+        if(front==null){
+            return ;
+        }
+        front=front.next;
+        if(front==null){
+            rear=null;
+        }
+        return ;
+        
+    }
+    void display(){
+        while(front!=null){
+            System.out.print(front.data+" ");
+            front=front.next;
+        }
+    }
+    
+    
+}
+public class Main
+{
+	public static void main(String[] args) {
+		Queue q=new Queue();
+		q.enque(10);
+		q.enque(20);
+		q.enque(30);
+		q.deque();
+	    q.display();
+	   
+	   
+		
+	}
+}
