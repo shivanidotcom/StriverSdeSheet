@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+
+class GFG {
+     Deque<Integer> dq;
+    GFG(){
+        dq=new LinkedList<Integer>();
+    }
+		void insertMin(int x){
+		    dq.offerFirst(x);
+		}
+		void insertMax(int x){
+		    dq.offerLast(x);
+		}
+		int getMin(){
+		   return dq.peekFirst();
+		}
+		int getMax(){
+		    return dq.peekLast();
+		}
+		int extractMin(){
+		    return dq.pollFirst();
+		}
+		int extractMax(){
+		    return dq.pollLast();
+		}
+	public static void main (String[] args) {
+		GFG obj=new GFG();
+		obj.insertMin(5);
+		obj.insertMax(10);
+		obj.insertMin(3);
+		obj.insertMax(15);
+		System.out.println(obj.getMax());
+	}
+}
