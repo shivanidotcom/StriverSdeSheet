@@ -1,0 +1,25 @@
+class Tree
+{
+     // Recursive function to print right view of a binary tree.
+     ArrayList<Integer> v=new ArrayList<>();
+     public void func(Node root,int k){
+         if(root==null || k<0){
+             return ;
+         }
+         if(k==0){
+             v.add(root.data);
+             return ;
+         }else{
+             func(root.left,k-1);
+             func(root.right,k-1);
+         }
+     }
+     ArrayList<Integer> Kdistance(Node root, int k)
+     {
+          // Your code here
+        // ArrayList<Integer> v;
+         func(root,k);
+         return v;
+         
+     }
+}
