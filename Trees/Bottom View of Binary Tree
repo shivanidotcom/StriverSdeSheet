@@ -1,0 +1,56 @@
+/*********************************************
+
+    class BinaryTreeNode {
+        int val;
+        BinaryTreeNode left;
+        BinaryTreeNode right;
+
+        BinaryTreeNode(int val) {
+            this.val = val;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+*********************************************/
+import java.util.*;
+class Pair{
+        int x;
+        BinaryTreeNode node;
+        public Pair(int x, BinaryTreeNode node){
+            this.x = x;
+            this.node = node;
+        }
+ }
+
+public class Solution {
+    public static ArrayList<Integer> bottomView(BinaryTreeNode root) {
+         // Write your code here.  
+        ArrayList<Integer> ans = new ArrayList<>();
+        if(root == null) return ans;
+        Map<Integer, Integer> map = new TreeMap<>();
+        Queue<Pair> q = new LinkedList<Pair>();
+        q.offer(new Pair(0, root));
+        while (!q.isEmpty()) {
+            Pair p = q.poll();
+            int x = p.x;
+            BinaryTreeNode cur = p.node;
+            
+            map.put(x, cur.val);
+            
+            if(cur.left != null){
+                q.offer(new Pair(x-1, cur.left));
+            }
+            if(cur.right != null){
+                q.offer(new Pair(x+1, cur.right));
+            }
+        }
+
+        for (Map.Entry<Integer, Integer> entry: map.entrySet()) {
+            ans.add(entry.getValue());
+        }
+        return ans;
+    }
+}
+
+// x --> hd --> horizantal distance
