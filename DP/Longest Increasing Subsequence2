@@ -1,0 +1,35 @@
+
+public class Solution {
+
+    public static int ceilIndex(int[] tail,int start,int end,int x){
+        while(end>start){
+            int m = start+(end-start)/2;
+            if(tail[m]>=x){
+                end=m;
+            }else{
+                start = m+1;
+            }
+        }
+        return end;
+    }
+	public static int longestIncreasingSubsequence(int arr[]) {
+		//Your code goes here
+         int n = arr.length;
+        int[] tail = new int[n];
+        int len = 1;
+       
+        tail[0]=arr[0];
+        for(int i=1;i<n;i++){
+            if(arr[i]>tail[len-1]){
+                tail[len]=arr[i];
+                len++;
+            }else{
+                int c = ceilIndex(tail,0,len-1,arr[i]);
+                tail[c]=arr[i];
+            }
+        }
+        return len;
+	}
+    
+
+}
