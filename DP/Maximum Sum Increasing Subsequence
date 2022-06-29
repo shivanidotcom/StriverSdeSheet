@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Solution {
+    public static int maxIncreasingDumbbellsSum(ArrayList<Integer> rack, int n) {
+        // Write your code here.
+        int[] mlis= new int[n];
+       // Arrays.fill(mlis,-1);
+        //mlis[0]=rack.get(0);
+        for(int i=0;i<n;i++){
+            mlis[i]=rack.get(i);
+            for(int j=0;j<i;j++)
+            {
+                if(rack.get(i)>rack.get(j)){
+                    mlis[i]=Math.max(mlis[i],rack.get(i)+mlis[j]);
+                }
+            }
+            
+        }
+        int res = mlis[0];
+        for(int i=1;i<n;i++){
+            res = Math.max(res,mlis[i]);
+        }
+        return res;
+    }
+}
