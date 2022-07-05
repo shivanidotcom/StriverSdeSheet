@@ -1,0 +1,13 @@
+import java.util.ArrayList;
+
+public class Solution {
+	public static int maxProfit(ArrayList<Integer> values, ArrayList<Integer> weights, int n, int w) {
+		// Write your code here.
+        //base condition
+        if(n==0 || w==0) return 0;
+        if(weights.get(n-1)>w){
+            return maxProfit(values,weights,n-1,w);//not pick the item
+        }
+        return Math.max(maxProfit(values,weights,n-1,w),values.get(n-1)+maxProfit(values,weights,n-1,w-weights.get(n-1)));
+	}
+}
