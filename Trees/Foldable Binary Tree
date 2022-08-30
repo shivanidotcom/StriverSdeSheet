@@ -1,0 +1,54 @@
+Given a binary tree, check if the tree can be folded or not. A tree can be folded if left and right subtrees of the tree are structure wise mirror image of each other. An empty tree is considered as foldable.
+Consider the below trees:
+(a) and (b) can be folded.
+(c) and (d) cannot be folded.
+
+
+(a)
+       10
+     /    \
+    7      15
+     \    /
+      9  11
+(b)
+        10
+       /  \
+      7    15
+     /      \
+    9       11
+(c)
+        10
+       /  \
+      7   15
+     /    /
+    5   11
+(d)
+         10
+       /   \
+      7     15
+    /  \    /
+   9   10  12
+   ********************************************************************************
+   
+   class Tree
+{
+    //Function to check whether a binary tree is foldable or not.
+    boolean helper(Node n1,Node n2){
+       
+            if(n1==null && n2==null) return true;
+
+	     	if((n1==null && n2!=null) || (n1!=null && n2==null)) return false;
+
+	     	return helper(n1.left,n2.right) && helper(n1.right,n2.left);
+    }
+    boolean IsFoldable(Node node) 
+	{ 
+		// your code 
+		if(node==null) return true;
+
+		return helper(node.left,node.right);
+		
+	} 
+}
+//time complexity = o(n)
+//space complexity = o(n)
