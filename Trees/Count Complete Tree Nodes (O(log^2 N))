@@ -1,0 +1,46 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    private int heightLeft(TreeNode root){
+        int hgt=0;
+        while(root!=null){
+            hgt++;
+            root=root.left;
+        }
+        return hgt;
+    }
+    private int heightRight(TreeNode root){
+        int hgt=0;
+        while(root!=null){
+            hgt++;
+            root=root.right;
+        }
+        return hgt;
+    }
+    public int countNodes(TreeNode root) {
+        if(root==null) return 0;
+        //count left subtree height and
+        //count right subtree height
+        int left=heightLeft(root);
+        int right=heightRight(root);
+        if(left==right) return (int)Math.pow(2,left)-1;
+        int leftNodes=countNodes(root.left);
+        int rightNodes=countNodes(root.right);
+        return 1+leftNodes+rightNodes;
+    }
+}
+//time complexity = o(log^2 n)
+//space complexity =o(logn) recursive stack space while calculating height
