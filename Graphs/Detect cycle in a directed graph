@@ -1,0 +1,45 @@
+Given a Directed Graph with V vertices (Numbered from 0 to V-1) and E edges, check whether it contains any cycle or not.
+
+
+Example 1:
+
+Input:
+
+
+
+Output: 1
+Explanation: 3 -> 3 is a cycle
+
+Example 2:
+
+Input:
+
+
+Output: 0
+Explanation: no cycle in the graph
+
+====================================================
+This is bit complex when compare to "DETECT CYCLE IN UNDIRECTED GRAPH"
+-> The approach what we have used in "detect cycle in undirected graph" is not going to work. Hence the modified solution is below with time complexity of O(V+E)
+
+======================================================
+
+Given a Directed Graph with V vertices (Numbered from 0 to V-1) and E edges, check whether it contains any cycle or not.
+
+
+Example 1:
+
+Input:
+
+
+
+Output: 1
+Explanation: 3 -> 3 is a cycle
+
+Example 2:
+
+Input:
+
+
+Output: 0
+Explanation: no cycle in the graph
